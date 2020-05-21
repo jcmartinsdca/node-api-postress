@@ -27,7 +27,7 @@ const getUserById = (request, response) => {
 }
 
 const createUser = (request, response) => {
-    const { name, email } = request.body
+    const { name, grade } = request.body
 
     pool.query('INSERT INTO students (name, grade) VALUES ($1, $2)', [name, grade], (error, results) => {
         if (error) {
@@ -65,9 +65,9 @@ const deleteUser = (request, response) => {
 }
 
 const getGrade = (request, response) => {
-    const grade = parseInt(request.params.id)
+    const id = parseInt(request.params.id)
 
-    pool.query('SELECT * FROM students WHERE grade = $1', [grade], (error, results) => {
+    pool.query('SELECT * FROM students WHERE id = $1', [id], (error, results) => {
         if (error) {
             throw error
         }

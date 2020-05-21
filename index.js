@@ -22,7 +22,7 @@ app.get('/grades', (request, response) => {
 app.get('/students', db.getUsers)
 app.get('/students/:id', db.getGrade)
 app.get('/students/:id', db.getUserById)
-app.post('/students', db.createUser)
+app.post('/students:id', db.createUser)
 app.put('/students/:id', db.updateUser)
 app.delete('/users/:id', db.deleteUser)
 
