@@ -21,9 +21,9 @@ app.get('/grades', (request, response) => {
 
 app.get('/students', db.getUsers)
 app.get('/students/:id', db.getGrade)
-app.get('/users/:id', db.getUserById)
-app.post('/users', db.createUser)
-app.put('/users/:id', db.updateUser)
+app.get('/students/:id', db.getUserById)
+app.post('/students', db.createUser)
+app.put('/students/:id', db.updateUser)
 app.delete('/users/:id', db.deleteUser)
 
 
