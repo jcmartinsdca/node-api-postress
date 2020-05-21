@@ -29,7 +29,7 @@ const getUserById = (request, response) => {
 const createUser = (request, response) => {
     const { name, email } = request.body
 
-    pool.query('INSERT INTO students (name, email) VALUES ($1, $2)', [name, email], (error, results) => {
+    pool.query('INSERT INTO students (name, grade) VALUES ($1, $2)', [name, grade], (error, results) => {
         if (error) {
             throw error
         }
@@ -39,11 +39,11 @@ const createUser = (request, response) => {
 
 const updateUser = (request, response) => {
     const id = parseInt(request.params.id)
-    const { name, email } = request.body
+    const { name, grade } = request.body
 
     pool.query(
-        'UPDATE students SET name = $1, email = $2 WHERE id = $3',
-        [name, email, id],
+        'UPDATE students SET name = $1, grade = $2 WHERE id = $3',
+        [name, grade, id],
         (error, results) => {
             if (error) {
                 throw error
@@ -65,9 +65,9 @@ const deleteUser = (request, response) => {
 }
 
 const getGrade = (request, response) => {
-    const id = parseInt(request.params.id)
+    const grade = parseInt(request.params.id)
 
-    pool.query('SELECT * FROM students WHERE id = $1', [id], (error, results) => {
+    pool.query('SELECT * FROM students WHERE grade = $1', [grade], (error, results) => {
         if (error) {
             throw error
         }
