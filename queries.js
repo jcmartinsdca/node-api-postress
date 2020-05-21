@@ -2,12 +2,12 @@ const Pool = require('pg').Pool
 const pool = new Pool({
     user: 'jamesmartin',
     host: 'localhost',
-    database: 'api',
+    database: 'students',
     password: 'password',
     port: 5432,
 })
 const getUsers = (request, response) => {
-    pool.query('SELECT * FROM users ORDER BY id ASC', (error, results) => {
+    pool.query('SELECT * FROM students ORDER BY id ASC', (error, results) => {
         if (error) {
             throw error
         }
@@ -64,10 +64,22 @@ const deleteUser = (request, response) => {
     })
 }
 
+const getGrade = (request, response) => {
+    const id = parseInt(request.params.id)
+
+    pool.query('SELECT * FROM students WHERE id = $1', [id], (error, results) => {
+        if (error) {
+            throw error
+        }
+        response.status(200).json(results.rows)
+    })
+}
+
 module.exports = {
     getUsers,
     getUserById,
     createUser,
     updateUser,
     deleteUser,
+    getGrade,
 }
